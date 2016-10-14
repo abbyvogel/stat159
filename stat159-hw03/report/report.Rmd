@@ -1,0 +1,61 @@
+---
+title: "Multiple Regression Analysis"
+author: "Abby Vogel"
+date: "October 14, 2016"
+output: pdf_document
+---
+
+##Abstract
+
+##Introduction
+
+##Data
+
+##Methodology
+
+##Results
+
+```{r echo=FALSE}
+load('../data/regression.RData')
+library(xtable)
+options(xtable.caption.placement = 'top', xtable.comment = FALSE)
+```
+
+```{r echo=FALSE, xtable, results="asis" }
+reg_table <- xtable(tvsum$coefficients, caption="Simple Regression of Sales on TV")
+print(reg_table, type="latex")
+reg_table <- xtable(radiosum$coefficients, caption="Simple Regression of Sales on Radio")
+print(reg_table, type="latex")
+reg_table <- xtable(newssum$coefficients, caption="Simple Regression of Sales on Newspaper")
+print(reg_table, type="latex")
+```
+
+```{r echo=FALSE, results="asis" }
+reg_table <- xtable(sumreg$coefficients, caption="Least Square Coefficient Estimates")
+print(reg_table, type="latex")
+```
+
+```{r echo=FALSE}
+load('../data/correlation-matrix.RData')
+```
+
+```{r echo=FALSE, results="asis" }
+cor_table <- xtable(cormat, caption="Matrix of Correlation Coefficients")
+print(cor_table, type="latex")
+```
+
+```{r echo=FALSE}
+load('../code/functions/regression-functions.R')
+```
+
+```{r echo=FALSE, results="asis" }
+
+mytable <- data.frame("Value" = c('RSS', 'R2', 'F-Stat'), "Quantity" = c(residual_sum_squares(sumreg), r_squared(sumreg), f_statistic(sumreg)))
+
+rss_table <- xtable(mytable, caption="More Least Squares Terms")
+
+print(rss_table, type="latex", include.rownames = FALSE)
+```
+
+##Conclusions
+

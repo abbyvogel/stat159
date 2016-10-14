@@ -1,7 +1,6 @@
 .PHONY: data/Advertising.csv all tests clean
 
-all: eda-output.txt regression.RData tests
-#report.pdf
+all: eda-output.txt regression.RData tests report.pdf session-info.txt
 
 
 data/Advertising.csv:
@@ -17,8 +16,11 @@ regression.RData: code/scripts/regression-script.R data/Advertising.csv
 eda-output.txt: code/scripts/eda-script.R data/Advertising.csv
 	cd code/scripts; Rscript eda-script.R
 
-#report.pdf: report/report.Rmd
-#	cd report; Rscript -e 'library(rmarkdown); render("report.Rmd")'
+report.pdf: report/report.Rmd
+	cd report; Rscript -e 'library(rmarkdown); render("report.Rmd")'
+
+session-info.txt: code/scripts/session-info-script.R
+	cd code/scripts; Rscript session-info-script.R
 
 clean:
 	rm -f report.pdf

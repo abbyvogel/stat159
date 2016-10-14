@@ -2,6 +2,7 @@
 
 
 ##RESIDUAL SUM of SQUARES
+#i did this before I saw the piazza response
 residual_sum_squares <- function(x){
   sum(x$residuals^2)
 }

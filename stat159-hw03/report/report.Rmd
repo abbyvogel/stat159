@@ -44,16 +44,13 @@ cor_table <- xtable(cormat, caption="Matrix of Correlation Coefficients")
 print(cor_table, type="latex")
 ```
 
-```{r echo=FALSE}
-load('../code/functions/regression-functions.R')
+```{r include=FALSE}
+source('../code/functions/regression-functions.R')
 ```
 
 ```{r echo=FALSE, results="asis" }
-
-mytable <- data.frame("Value" = c('RSS', 'R2', 'F-Stat'), "Quantity" = c(residual_sum_squares(sumreg), r_squared(sumreg), f_statistic(sumreg)))
-
+mytable <- data.frame("Value" = c('RSS', '$R^2^$', 'F-Stat'), "Quantity" = c(residual_sum_squares(reg), r_squared(reg), f_statistic(reg)))
 rss_table <- xtable(mytable, caption="More Least Squares Terms")
-
 print(rss_table, type="latex", include.rownames = FALSE)
 ```
 
